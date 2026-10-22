@@ -87,6 +87,26 @@ const PATHS: Record<string, ReactNode> = {
       <path d="m16 16 4 4" />
     </>
   ),
+  book: (
+    <>
+      <path d="M12 6.5C10.3 5.2 8 4.5 4.5 4.5v13c3.5 0 5.8.7 7.5 2 1.7-1.3 4-2 7.5-2v-13c-3.5 0-5.8.7-7.5 2Z" />
+      <path d="M12 6.5v13" />
+    </>
+  ),
+  layout: (
+    <>
+      <rect x="4" y="3.5" width="16" height="17" rx="3" />
+      <path d="M4 9.5h16M10 9.5v11" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3.5" y="5" width="17" height="15" rx="3" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+    </>
+  ),
+  chart: <path d="M5 20h14M7.5 16.5v-5M12 16.5v-9M16.5 16.5v-6.5" />,
+  out: <path d="M8.5 5.5h10v10M18.5 5.5 6 18" />,
   download: <path d="M12 4v11m0 0-4.500-4.500M12 15l4.500-4.500M5 19.500h14" />,
   plus: <path d="M12 5v14M5 12h14" />,
   back: <path d="m14.500 5-7 7 7 7" />,

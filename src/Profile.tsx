@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { ACTIVE } from './parts'
+import { ACTIVE, Upcoming } from './parts'
 import { actions, useStore } from './store'
-import { EMPTY_PROFILE, PRODUCTS, STATUSES, TOOLS, kindOf, type ContactVia, type Profile, type Task } from './types'
-import { Chips, Field, Icon, Sheet, Toggle, download, initials, toast } from './ui'
+import { EMPTY_PROFILE, PRODUCTS, STATUSES, TOOLS, kindOf, type ContactVia, type Profile, type Status, type Task } from './types'
+import { Chips, Field, Icon, Sheet, Toggle, download, go, initials, toast } from './ui'
 
 const VIA: { value: ContactVia; label: string }[] = [
   { value: 'buzz', label: 'Buzz' },
@@ -69,18 +69,15 @@ export function ProfileScreen() {
   const filled = CORE.filter((k) => String(profile[k]).trim()).length
   const share = filled / CORE.length
   const ring = 2 * Math.PI * 46
-  const stats: [string, number][] = [
-    ['всего заявок', tasks.length],
-    ['активные', tasks.filter((t) => ACTIVE.includes(t.status)).length],
-    ['завершено', tasks.filter((t) => t.status === 'done').length],
-  ]
+  const active = tasks.filter((t) => ACTIVE.includes(t.status))
+  const count = (status: Status) => tasks.filter((t) => t.status === status).length
   const own = tasks.filter((t) => !t.demo)
   const stamp = new Date().toISOString().slice(0, 10)
 
   return (
     <div className="page">
       <div className="page-head">
-        <h1 className="h1">профиль</h1>
+        <h1 className="h1">личный кабинет</h1>
       </div>
 
       <div className="cols">
@@ -115,16 +112,35 @@ export function ProfileScreen() {
             </div>
           </section>
 
-          <section className="card">
-            <dl className="hero-stats">
-              {stats.map(([name, value]) => (
-                <div key={name}>
-                  <dt>{name}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
+          <button className="card strip" onClick={() => go('/tasks')}>
+            <span className="strip-ball">{active.length}</span>
+            <span className="strip-body">
+              <b>активные заявки</b>
+              <small>
+                {tasks.length === 0
+                  ? 'заявок пока нет'
+                  : `на согласовании ${count('review')} · в работе ${count('work')} · черновики ${count('draft')}`}
+              </small>
+            </span>
+            <Icon name="next" size={20} />
+          </button>
+
+          {tasks
+            .filter((t) => t.status === 'fix')
+            .map((t) => (
+              <button key={t.id} className="card notice" onClick={() => go(`/task/${t.id}`)}>
+                <span className="ball ball-dark">
+                  <Icon name="note" size={22} />
+                </span>
+                <span>
+                  <b>CVM ждёт ваш ответ</b>
+                  <small>{t.title}</small>
+                </span>
+                <Icon name="next" size={20} />
+              </button>
+            ))}
+
+          <Upcoming tasks={tasks} limit={4} />
         </aside>
 
         <div className="cols-main">

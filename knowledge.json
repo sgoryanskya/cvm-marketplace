@@ -1,0 +1,94 @@
+{
+  "_help": "Плашки раздела «База знаний». Пустой link: плашка «скоро» без перехода. order: порядок внутри группы. group: understand (разобраться, с номерами) или work (работать). Иллюстрация берется по id; для новой плашки можно указать art: cvm, epk, score, attributes, abcd, library, planning, dashboard или book. Название до 30 знаков, текст до 60.",
+  "groups": [
+    {
+      "id": "understand",
+      "title": "разобраться",
+      "numbered": true
+    },
+    {
+      "id": "work",
+      "title": "работать"
+    }
+  ],
+  "items": [
+    {
+      "id": "cvm",
+      "group": "understand",
+      "order": 1,
+      "title": "что такое CVM",
+      "text": "кто мы, что делаем и как устроен процесс",
+      "source": "Confluence",
+      "link": "https://bwiki.beeline.ru/spaces/MBB/pages/666174667/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B+CVM"
+    },
+    {
+      "id": "epk",
+      "group": "understand",
+      "order": 2,
+      "title": "ЕПК",
+      "text": "единая политика контактирования: кому и как часто пишем",
+      "source": "Confluence",
+      "link": "https://bwiki.beeline.ru/spaces/CVMBOX/pages/1164382956/%D0%9F%D0%BB%D0%B0%D0%BD+%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D0%B5%D0%B9"
+    },
+    {
+      "id": "score",
+      "group": "understand",
+      "order": 3,
+      "title": "CVM-скор",
+      "text": "склонность клиента к продукту: оценка от 0 до 1",
+      "source": "Confluence",
+      "link": "https://bwiki.beeline.ru/spaces/MBB/pages/2662332342/CVM+%D1%81%D0%BA%D0%BE%D1%80"
+    },
+    {
+      "id": "attributes",
+      "group": "understand",
+      "order": 4,
+      "title": "атрибуты",
+      "text": "какие данные о клиентах доступны для выборок",
+      "source": "Confluence",
+      "link": "https://bwiki.beeline.ru/spaces/CVMBOX/pages/1469673027/%D0%90%D1%82%D1%80%D0%B8%D0%B1%D1%83%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9+%D1%81%D0%BE%D1%81%D1%82%D0%B0%D0%B2+%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86+%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8F+%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D0%B0+CVM-box+b2b",
+      "extra": [
+        {
+          "title": "перевод кампаний в CVM BOX",
+          "link": "https://bwiki.beeline.ru/spaces/MBB/pages/789612411/%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4+%D0%BA%D0%B0%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B9+%D0%B2+CVM+BOX"
+        }
+      ]
+    },
+    {
+      "id": "abcd",
+      "group": "understand",
+      "order": 5,
+      "title": "ABCD-тесты",
+      "text": "как тестируем рассылки и что сработало",
+      "source": "Confluence",
+      "link": "https://bwiki.beeline.ru/pages/viewpage.action?pageId=1698921474&spaceKey=MBB&title=A%2BB%2B%D1%82%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5"
+    },
+    {
+      "id": "library",
+      "group": "work",
+      "order": 1,
+      "title": "библиотека макетов",
+      "text": "готовые шаблоны email-рассылок",
+      "source": "библиотека",
+      "link": "https://sgoryanskya.github.io/email_goryanskaya/"
+    },
+    {
+      "id": "planning",
+      "group": "work",
+      "order": 2,
+      "title": "календарь планирования",
+      "text": "что и когда уходит в рассылку",
+      "source": "Confluence",
+      "link": "https://bwiki.beeline.ru/spaces/MBB/pages/1154923533/%D0%9F%D0%BB%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5+%D1%80%D0%B0%D1%81%D1%81%D1%8B%D0%BB%D0%BE%D0%BA#tab-Total_26"
+    },
+    {
+      "id": "dashboard",
+      "group": "work",
+      "order": 3,
+      "title": "дашборд",
+      "text": "результаты рассылок в цифрах",
+      "source": "Qlik",
+      "link": "https://qlik.beeline.ru/corp01/sense/app/641b1baf-8348-4361-a440-ce6bcb2c1e08/sheet/01b1fbf1-ac14-40b8-b4a6-ddd091356cd4/state/analysis"
+    }
+  ]
+}

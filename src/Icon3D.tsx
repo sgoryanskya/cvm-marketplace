@@ -154,8 +154,168 @@ function Slab(p: { size: number; r: number; depth: number; y: number; top: strin
 }
 
 export function Icon3D({ tool, size = 96 }: { tool: ToolId; size?: number }) {
-  const c = PAINT[tool]
-  const id = `i3d-${tool}`
+  return <Shape c={PAINT[tool]} id={`i3d-${tool}`} size={size} />
+}
+
+// ---------- иллюстрации базы знаний: тот же предмет на плите, свои цвета и знаки ----------
+
+const KB_PAINT: Record<string, Paint> = {
+  // что такое CVM: графитовая плита и желтые буквы
+  cvm: {
+    light: '#6b7070',
+    base: '#3f4242',
+    side: '#262828',
+    glyph: (
+      <text
+        x="0"
+        y="1"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fontSize="19"
+        fontWeight="700"
+        fill="#ffc800"
+        letterSpacing="-0.5"
+      >
+        CVM
+      </text>
+    ),
+  },
+  // ЕПК: щит с галочкой, правила контактов
+  epk: {
+    light: '#ff8a80',
+    base: '#f4483f',
+    side: '#c22a22',
+    glyph: (
+      <>
+        <path d="M0 -19 L15 -13 V-1 C15 9 8 15 0 19 C-8 15 -15 9 -15 -1 V-13 Z" fill={W} fillOpacity=".92" />
+        <path
+          d="M-7 0 L-2 5 L8 -6"
+          fill="none"
+          stroke="#f4483f"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </>
+    ),
+  },
+  // CVM-скор: оценка от 0 до 1
+  score: {
+    light: '#74e39a',
+    base: '#2fbf65',
+    side: '#1e9148',
+    glyph: (
+      <text
+        x="0"
+        y="1"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fontSize="20"
+        fontWeight="700"
+        fill={W}
+        letterSpacing="-0.5"
+      >
+        0,75
+      </text>
+    ),
+  },
+  // атрибуты: строки данных о клиенте
+  attributes: {
+    light: '#66e2cb',
+    base: '#1fb89c',
+    side: '#128a75',
+    glyph: (
+      <>
+        <circle cx="-14" cy="-11" r="4" fill={W} />
+        <rect x="-6" y="-14" width="24" height="6" rx="3" fill={W} fillOpacity=".9" />
+        <circle cx="-14" cy="0" r="4" fill={W} fillOpacity=".75" />
+        <rect x="-6" y="-3" width="17" height="6" rx="3" fill={W} fillOpacity=".7" />
+        <circle cx="-14" cy="11" r="4" fill={W} fillOpacity=".75" />
+        <rect x="-6" y="8" width="21" height="6" rx="3" fill={W} fillOpacity=".7" />
+      </>
+    ),
+  },
+  // ABCD-тесты: четыре варианта, один выиграл
+  abcd: {
+    light: '#ffc266',
+    base: '#ff8f1f',
+    side: '#d96a00',
+    glyph: (
+      <>
+        <rect x="-17" y="-17" width="15" height="15" rx="4" fill={W} fillOpacity=".5" />
+        <rect x="2" y="-17" width="15" height="15" rx="4" fill={W} />
+        <rect x="-17" y="2" width="15" height="15" rx="4" fill={W} fillOpacity=".5" />
+        <rect x="2" y="2" width="15" height="15" rx="4" fill={W} fillOpacity=".5" />
+      </>
+    ),
+  },
+  // библиотека макетов: стопка шаблонов писем
+  library: {
+    light: '#6f9bff',
+    base: '#3d6bf2',
+    side: '#2a4fc4',
+    glyph: (
+      <>
+        <rect x="-11" y="-20" width="28" height="32" rx="4" fill={W} fillOpacity=".45" />
+        <rect x="-17" y="-14" width="28" height="32" rx="4" fill={W} fillOpacity=".95" />
+        <rect x="-12" y="-9" width="18" height="8" rx="2" fill="#3d6bf2" fillOpacity=".55" />
+        <rect x="-12" y="3" width="18" height="3.5" rx="1.75" fill="#3d6bf2" fillOpacity=".55" />
+        <rect x="-12" y="10" width="11" height="3.5" rx="1.75" fill="#3d6bf2" fillOpacity=".55" />
+      </>
+    ),
+  },
+  // календарь планирования
+  planning: {
+    light: '#7fd2ff',
+    base: '#2fa4f0',
+    side: '#1a7bc0',
+    glyph: (
+      <>
+        <rect x="-18" y="-15" width="36" height="33" rx="5" fill={W} fillOpacity=".92" />
+        <rect x="-9" y="-20" width="4" height="9" rx="2" fill={W} />
+        <rect x="5" y="-20" width="4" height="9" rx="2" fill={W} />
+        <rect x="-12" y="-4" width="6" height="6" rx="1.5" fill="#2fa4f0" fillOpacity=".5" />
+        <rect x="-3" y="-4" width="6" height="6" rx="1.5" fill="#2fa4f0" fillOpacity=".5" />
+        <rect x="6" y="-4" width="6" height="6" rx="1.5" fill="#ffc800" />
+        <rect x="-12" y="6" width="6" height="6" rx="1.5" fill="#2fa4f0" fillOpacity=".5" />
+        <rect x="-3" y="6" width="6" height="6" rx="1.5" fill="#2fa4f0" fillOpacity=".5" />
+        <rect x="6" y="6" width="6" height="6" rx="1.5" fill="#2fa4f0" fillOpacity=".5" />
+      </>
+    ),
+  },
+  // дашборд: столбики результатов
+  dashboard: {
+    light: '#e39bff',
+    base: '#b84df2',
+    side: '#8a2fc2',
+    glyph: (
+      <>
+        <rect x="-17" y="2" width="9" height="16" rx="3" fill={W} fillOpacity=".7" />
+        <rect x="-4" y="-12" width="9" height="30" rx="3" fill={W} />
+        <rect x="9" y="-4" width="9" height="22" rx="3" fill={W} fillOpacity=".7" />
+      </>
+    ),
+  },
+  // запасной вариант для новых плашек
+  book: {
+    light: '#c9cdd3',
+    base: '#9aa0a8',
+    side: '#747a82',
+    glyph: (
+      <>
+        <rect x="-18" y="-15" width="17" height="30" rx="3" fill={W} fillOpacity=".92" />
+        <rect x="1" y="-15" width="17" height="30" rx="3" fill={W} fillOpacity=".7" />
+      </>
+    ),
+  },
+}
+
+export function KbIcon3D({ kind, size = 96 }: { kind: string; size?: number }) {
+  const key = kind in KB_PAINT ? kind : 'book'
+  return <Shape c={KB_PAINT[key]} id={`kb3d-${key}`} size={size} />
+}
+
+function Shape({ c, id, size }: { c: Paint; id: string; size: number }) {
   return (
     <svg className="icon3d" width={size} height={size * 0.86} viewBox="-64 -50 128 110" aria-hidden="true">
       <defs>
